@@ -11,6 +11,9 @@ intents:
 - string
 - string
 - strsdfsdfsdfing
+- string
+- '345678'
+- sdfsdf
 responses:
   utter_cheer_up:
   - image: https://i.imgur.com/nGF1K8f.jpg

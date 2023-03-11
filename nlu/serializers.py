@@ -29,7 +29,7 @@ class IntentSerializer(serializers.ModelSerializer):
         intent = Intent.objects.create(**validated_data)
         intent.examples.set(examples)
         intent.save()
-        add_intent_to_bot(intent.name, intent.examples.values_list("text", flat=True))
+        add_intent_to_bot(intent.name, list(intent.examples.values_list("text", flat=True)))
         return intent
 
     def update(self, instance, validated_data):
