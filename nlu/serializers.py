@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
 from nlu.models import Intent, IntentExample
+from nlu.tasks import add_intent_to_bot
 
 
 class IntentExampleListSerializer(serializers.ListSerializer):
@@ -28,6 +29,7 @@ class IntentSerializer(serializers.ModelSerializer):
         intent = Intent.objects.create(**validated_data)
         intent.examples.set(examples)
         intent.save()
+        add_intent_to_bot(intent.name, intent.examples.values_list("text", flat=True))
         return intent
 
     def update(self, instance, validated_data):
@@ -38,7 +40,6 @@ class IntentSerializer(serializers.ModelSerializer):
         instance.examples.set(examples)
         instance.save()
         return instance
-
 
     class Meta:
         model = Intent

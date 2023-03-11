@@ -16,13 +16,23 @@ MODELS = "rasa_pkg/models/"
 
 
 class Handler:
-
+    # def _append_to_nlu(self):
     def add_intent(self, intent_name: str, examples: List[str]) -> bool:
         nlu = read_yaml_file_content(NLU)
         domain = read_yaml_file_content(DOMAIN)
-        nlu["nlu"].append(
-            {"intent": intent_name, "examples": yaml.dump([examples[i] for i in range(len(examples))], indent=4)})
-        domain['intents'].append(intent_name)
+
+        intent_filter = list(filter(lambda element: element.get("intent") == intent_name, nlu["nlu"]))
+        print(intent_filter)
+        if intent_filter:
+            intent = intent_filter[0]
+            intent["examples"] = examples
+            nlu["nlu"] = [intent if intent_elm.get("intent") == intent_name else intent_elm for intent_elm in
+                          nlu["nlu"]]
+        else:
+            nlu["nlu"].append(
+                {"intent": intent_name, "examples": yaml.dump([examples[i] for i in range(len(examples))], indent=4)})
+            domain['intents'].append(intent_name)
+
         write_yaml_content_to_file(NLU, nlu)
         write_yaml_content_to_file(DOMAIN, domain)
         return True

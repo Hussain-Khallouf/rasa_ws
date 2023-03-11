@@ -149,10 +149,5 @@ nlu:
 
     '
   intent: bot_challenge
-- examples: '- test1
 
-    - test2
-
-    '
-  intent: test
 version: '3.1'

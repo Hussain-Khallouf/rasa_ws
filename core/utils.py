@@ -4,6 +4,12 @@ from rest_framework.response import Response as DrfResponse
 from rest_framework.utils import json
 from rest_framework.viewsets import GenericViewSet
 
+from rasa_pkg import handler
+
+
+def get_rasa_handler():
+    return handler
+
 
 class Response(DrfResponse):
 
