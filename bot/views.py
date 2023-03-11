@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from core.bot_model import bot_model
 from .serializers import MessageSerializer
-
+from rest_framework.viewsets import ModelViewSet
 
 # Create your views here.
 
@@ -12,7 +12,10 @@ from .serializers import MessageSerializer
 class ChatAPIView(APIView):
     @swagger_auto_schema(request_body=MessageSerializer)
     def post(self, request):
-        message = request.data["message"]
-        message = UserMessage(text=message)
+        serializer = MessageSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        message = serializer.data["message"]
+        sender_id = serializer.data["sender_id"]
+        message = UserMessage(text=message, sender_id=sender_id)
         response = bot_model.get_response(message)
         return Response(response)
