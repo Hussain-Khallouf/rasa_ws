@@ -1,177 +1,183 @@
 version: "3.1"
 
 nlu:
+- intent: greet
+  examples: |
+    - صباح الخير
+    - مساء الخير
+    - السلام عليكم
+    - مرحبا
+
+- intent: goodbye
+  examples: |
+    - باي
+    - مع السلامة
+    - بدك شي
+
 - intent: faq/book_passenger_age
   examples: |
-    - 	متى يعتبر المسافررضيعا أو طفلا أو بالغا؟
+    -    متى يعتبر المسافررضيعا أو طفلا أو بالغا؟
 
 - intent: faq/book_confirmation
   examples: |
-    - 	هل أحتاج إلى الاتصال بكم لإعادة تأكيد رحلتي
+    -    هل أحتاج إلى الاتصال بكم لإعادة تأكيد رحلتي
 
 - intent: faq/book_choose_chair
   examples: |
-    -	هل يمكنني اختيار مقعد مخصص لي خلال رحلة الطيران؟
+    -   هل يمكنني اختيار مقعد مخصص لي خلال رحلة الطيران؟
 
 - intent: faq/book_rewrite_name
   examples: |
-    -	هل يجب تعديل الإسم على التذكرة في حال وجود خطأ كتابي في الاسم؟
+    -   هل يجب تعديل الإسم على التذكرة في حال وجود خطأ كتابي في الاسم؟
 
 - intent: faq/book_change_name_on_ticket
   examples: |
-    -	هل يمكنني تغيير الإسم على التذكرة الى اسم شخص آخر؟
+    -   هل يمكنني تغيير الإسم على التذكرة الى اسم شخص آخر؟
 
 - intent: faq/book_unexpected_action
   examples: |
-    -	حدث شيء ما غير متوقع وأصبحت غير قادر على السفر، فماذا أفعل؟
+    -   حدث شيء ما غير متوقع وأصبحت غير قادر على السفر، فماذا أفعل؟
 
 - intent: faq/book_edit_trip_date
   examples: |
-    -	كيف يمكنني  تعديل تاريخ الحجز الخاص بي
+    -   كيف يمكنني  تعديل تاريخ الحجز الخاص بي
 
 
-- intent: fqa/book_cancel_trip
+- intent: faq/book_cancel_trip
   examples: |
-    -	كيف يمكنني الغاء الحجز لرحلتي؟
+    -   كيف يمكنني الغاء الحجز لرحلتي؟
 
-- intent: faq/book_coins_types
-  examples: |
-    - 	ما هي العملات التي يمكن دفع ثمن التذكرة بها؟
+#- intent: faq/book_coins_types
+#  examples: |
+#    -    ما هي العملات التي يمكن دفع ثمن التذكرة بها؟
 
 - intent: faq/book_expire_date
   examples: |
-    -	ما هي مدة صلاحية تذكرتي؟
+    -   ما هي مدة صلاحية تذكرتي؟
 
 - intent: faq/book_with_point_app
   examples: |
-    - 	كيف يمكنني حجز رحلة باستخدام برنامج السفر نقاطي؟
+    -    كيف يمكنني حجز رحلة باستخدام برنامج السفر نقاطي؟
 
 - intent: faq/book_have_mobile_app
   examples: |
-    -	هل لديكم تطبيق خاص بالجوال؟
+    -   هل لديكم تطبيق خاص بالجوال؟
 
 - intent: faq/book_service_receiving_in_airport
   examples: |
-    -	كيف يمكنني حجز خدمة الاستقبال في المطار؟
+    -   كيف يمكنني حجز خدمة الاستقبال في المطار؟
 
 - intent: faq/book_dynamic_chair
   examples: |
-    -	كيف يمكنني طلب كرسي متحرك؟
+    -   كيف يمكنني طلب كرسي متحرك؟
 
 - intent: faq/book_receiving_hall_airport
   examples: |
-    -	هل يتم استقبالي في قاعة الشرف الموجودة في المطار؟
+    -   هل يتم استقبالي في قاعة الشرف الموجودة في المطار؟
 
 - intent: faq/book_with_payment_getaway_inside
   examples: |
-    -	هل يمكنني الحجز والدفع عبر الانترنت داخل سوريا؟
+    -   هل يمكنني الحجز والدفع عبر الانترنت داخل سوريا؟
 
 - intent: faq/book_with_payment_getaway_outside
   examples: |
-    -	هل يمكنني الحجز والدفع عبر الانترنت خارج سوريا؟
+    -   هل يمكنني الحجز والدفع عبر الانترنت خارج سوريا؟
     
 
 - intent: faq/travel_procedures_book_with_round_trip_when_get_visa
   examples: |
-    -	هل يسمح لي بالحجز والسفر ذهاب فقط عند الحصول على تأشيرة؟
+    -   هل يسمح لي بالحجز والسفر ذهاب فقط عند الحصول على تأشيرة؟
 
 - intent: faq/travel_procedures_time_out_to_trip
   examples: |
-    -	ماذا يحدث إن لم أتمكن من اللحاق برحلتي الجوية؟
+    -   ماذا يحدث إن لم أتمكن من اللحاق برحلتي الجوية؟
 
 - intent: faq/travel_procedures_women_pregnant_time
   examples: |
-    -	ما هي الفترة المسموح بها للحامل للسفر معنا؟
-    
-    
-    
-    
-    
+    -   ما هي الفترة المسموح بها للحامل للسفر معنا؟
+
 
 - intent: faq/baggage_policy_wight_person_direct_trip
   examples: |
-    -	ما هو الوزن المسموح به للشخص البالغ والطفل في الرحلات المباشرة؟
+    -   ما هو الوزن المسموح به للشخص البالغ والطفل في الرحلات المباشرة؟
 
 - intent: faq/baggage_policy_wight_infant
   examples: |
-    -	ما هو الوزن المسموح به للرضيع في الرحلات المباشرة؟
+    -   ما هو الوزن المسموح به للرضيع في الرحلات المباشرة؟
 
 - intent: faq/travel_procedures_buy_weight
   examples: |
-    -	كيف يمكنني شراء حقيبة اضافية بوزن محدد مسبقا؟
+    -   كيف يمكنني شراء حقيبة اضافية بوزن محدد مسبقا؟
 
 - intent: faq/travel_procedures_lose_damage_baggage
   examples: |
-    -	كيف يمكنني الإبلاغ عن الأمتعة المفقودة أو التي تعرضت للأذى؟
+    -   كيف يمكنني الإبلاغ عن الأمتعة المفقودة أو التي تعرضت للأذى؟
 
 - intent: faq/travel_procedures_forbidden_element
   examples: |
-    -	ما هي العناصر الممنوعة على متن الطائرة؟
+    -   ما هي العناصر الممنوعة على متن الطائرة؟
 
 - intent: faq/travel_procedures_get_pets
   examples: |
-    -	هل يمكنني إحضار حيوانات أليفة على متن الطائرة؟
+    -   هل يمكنني إحضار حيوانات أليفة على متن الطائرة؟
 
 - intent: faq/travel_procedures_get_musician_machines
   examples: |
-    -	هل يمكنني نقل آلات موسيقية ؟
+    -   هل يمكنني نقل آلات موسيقية ؟
 
 - intent: faq/travel_procedures_deliver_bags_in_transit
   examples: |
-    -	هل تصل حقائبي إلى وجهتي النهائية حتى لو كانت الرحلة ترانزيت؟
+    -   هل تصل حقائبي إلى وجهتي النهائية حتى لو كانت الرحلة ترانزيت؟
     
     
 
 - intent: faq/infant_travel
   examples: |
-    -	هل يسمح للرضيع بالسفر لوحده على متن أجنحة الشام ؟
+    -   هل يسمح للرضيع بالسفر لوحده على متن أجنحة الشام ؟
 
 - intent: faq/infant_required_approvals_less_18
   examples: |
-    -	ما هي الموافقات المطلوبة للمسافر الذي عمره اقل من 18 سنة عند سفره مع  أقاربه أو أحد والديه؟
+    -   ما هي الموافقات المطلوبة للمسافر الذي عمره اقل من 18 سنة عند سفره مع  أقاربه أو أحد والديه؟
 
 - intent: faq/infant_meals_presenting
   examples: |
-    -	هل يتم تقديم وجبات للمسافر الرضيع؟
+    -   هل يتم تقديم وجبات للمسافر الرضيع؟
     
-
-
-
 
 
 - intent: faq/child_travel_alone
   examples: |
-    	هل يسمح للطفل بالسفر لوحده دون شخص بالغ على متن أجنحة الشام ؟
+        -   هل يسمح للطفل بالسفر لوحده دون شخص بالغ على متن أجنحة الشام ؟
 
 - intent: faq/child_meals_presenting
   examples: |
-    -	هل يتم تقديم وجبات خاصة بالاطفال ؟
+    -   هل يتم تقديم وجبات خاصة بالاطفال ؟
 
 - intent: faq/child_using_private_chiar
   examples: |
-    -	هل يمكنني استخدام مقعد طفلي الخاص بالسيارة على متن الطائرة؟
+    -   هل يمكنني استخدام مقعد طفلي الخاص بالسيارة على متن الطائرة؟
 
 - intent: faq/child_bed_to_infants
   examples: |
-    -	هل يوجد سرير خاص بالأطفال على متن الطائرة؟
+    -   هل يوجد سرير خاص بالأطفال على متن الطائرة؟
 
 
 
 - intent: faq/general_questions_career
   examples: |
-    -	كيف يمكنني التقدم للعمل في اجنحة الشام؟
+    -   كيف يمكنني التقدم للعمل في اجنحة الشام؟
 
 - intent: faq/general_questions_goods_shipment
   examples: |
-    -	هل لديكم خدمة شحن مستندات أو بضائع 
+    -   هل لديكم خدمة شحن مستندات أو بضائع 
 
 - intent: faq/general_questions_visa_tourism
   examples: |
-    -	هل لديكم خدمة اصدار تأشيرات سياحية ؟
+    -   هل لديكم خدمة اصدار تأشيرات سياحية ؟
 
-- intent: faq/general_questions_communication
-  examples: |
-    -	كيف يمكنني التواصل مع أجنحة الشام للطيران؟
+#- intent: faq/general_questions_communication
+#  examples: |
+#    -   كيف يمكنني التواصل مع أجنحة الشام للطيران؟
 
 
 
