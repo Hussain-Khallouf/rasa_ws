@@ -13,6 +13,7 @@ DATA = "rasa_pkg/data/"
 NLU = f"{DATA}nlu.yml"
 CONFIG = "rasa_pkg/config.yml"
 MODELS = "rasa_pkg/models/"
+FAQS = "faqs/"
 
 
 class Handler:
@@ -80,6 +81,12 @@ class Handler:
         content = read_yaml_file_content(DOMAIN)
         responses = content['responses']
         return responses
+
+    def add_faqs(self, intent_name: str, examples: List[str], responses: List[Dict]) -> bool:
+        faq_intent = FAQS + intent_name
+        self.add_intent(faq_intent, examples)
+        self.add_new_response(faq_intent, responses)
+        return True
 
     def train_model(self, model_name: str):
         model_name = f"{MODELS}{model_name}"

@@ -155,4 +155,8 @@ nlu:
 
     '
   intent: sdfsdf
+- examples: '-   text: ''Here is something to cheer you up:''
+
+    '
+  intent: faqs/response_with_intent_to_faqs
 version: '3.1'

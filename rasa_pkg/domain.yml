@@ -14,12 +14,16 @@ intents:
 - string
 - '345678'
 - sdfsdf
+- faqs/response_with_intent_to_faqs
 responses:
   utter_cheer_up:
+  - text: 'Here is something to cheer you up:'
   - image: https://i.imgur.com/nGF1K8f.jpg
-    text: 'Here is something to cheer you up:'
   utter_did_that_help:
   - text: Did that help you?
+  utter_faqs/response_with_intent_to_faqs:
+  - image: https://i.imgur.com/nGF1K8f.jpg
+  - text: Hiiiii Hasssssooooooooon
   utter_goodbye:
   - text: Bye
   utter_greet:
