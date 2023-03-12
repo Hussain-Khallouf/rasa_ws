@@ -23,20 +23,20 @@ class Handler:
         intent = list(filter(lambda intent: intent == previous_intent_name, domain["intents"]))
         print(domain['intents'])
         if intent:
+            #  Delete intent from  nlu file and domain file
             nlu['nlu'] = [intent for intent in nlu['nlu'] if intent['intent'] != previous_intent_name]
+            domain['intents'] = [intent for intent in domain['intents'] if intent != previous_intent_name]
+            # Here edit intent
             new_intent = {
                 "intent": intent_name,
                 "examples": yaml.dump(examples, indent=4)
             }
             nlu["nlu"] = [new_intent if intent_elm["intent"] == new_intent["intent"] else intent_elm for intent_elm in
                           nlu["nlu"]]
-
         else:
             nlu["nlu"].append(
                 {"intent": intent_name, "examples": yaml.dump(examples, indent=4)})
             domain['intents'].append(intent_name)
-            domain['intents'] = [intent for intent in domain['intents'] if intent != previous_intent_name]
-
         write_yaml_content_to_file(NLU, nlu)
         write_yaml_content_to_file(DOMAIN, domain)
         return True
