@@ -41,71 +41,62 @@ class Handler:
         write_yaml_content_to_file(DOMAIN, domain)
         return True
 
+    async def _load_rasa_agent(self, model_path: str) -> Agent:
+        agent = await load_agent(model_path)
+        asyncio.wait(load_agent(model_path))
+        return agent
 
-async def _load_rasa_agent(self, model_path: str) -> Agent:
-    agent = await load_agent(model_path)
-    asyncio.wait(load_agent(model_path))
-    return agent
+    async def get_model(self, name: str = None) -> Union[Agent, None]:
+        if name:
+            model_name = name + ".tar.gz"
+            model_path = get_local_model(MODELS + model_name)
+        else:
+            model_path = get_latest_model(model_path=MODELS)
 
+        if model_path:
+            model = await self._load_rasa_agent(model_path)
+            return model
+        else:
+            return None
 
-async def get_model(self, name: str = None) -> Union[Agent, None]:
-    if name:
-        model_name = name + ".tar.gz"
-        model_path = get_local_model(MODELS + model_name)
-    else:
-        model_path = get_latest_model(model_path=MODELS)
+    def get_intents(self) -> List[str]:
+        nlu = read_yaml_file_content(DOMAIN)
+        return nlu['intents']
 
-    if model_path:
-        model = await self._load_rasa_agent(model_path)
-        return model
-    else:
+    def get_examples_of_intent(self, intent_name: str) -> Union[Dict, None]:
+        nlu = read_yaml_file_content(NLU)
+        nlu_content = nlu['nlu']
+        intent_examples = filter(lambda intents: intents.get(intent_name) is not None, nlu_content)
+        if intent_examples:
+            return {intent_name: intent_examples}
         return None
 
+    def add_new_response(self, intent_name: str, responses: List[Dict]) -> bool:
+        response = read_yaml_file_content(DOMAIN)
+        response['responses'].update({"utter_" + intent_name: responses})
+        write_yaml_content_to_file(DOMAIN, response)
+        return True
 
-def get_intents(self) -> List[str]:
-    nlu = read_yaml_file_content(DOMAIN)
-    return nlu['intents']
+    def get_responses_to_intent(self, intent_name: str) -> List[Dict]:
+        content = read_yaml_file_content(DOMAIN)
+        responses = content['responses']
+        return responses.get('utter_' + intent_name)
 
+    def get_all_responses(self) -> list:
+        content = read_yaml_file_content(DOMAIN)
+        responses = content['responses']
+        return responses
 
-def get_examples_of_intent(self, intent_name: str) -> Union[Dict, None]:
-    nlu = read_yaml_file_content(NLU)
-    nlu_content = nlu['nlu']
-    intent_examples = filter(lambda intents: intents.get(intent_name) is not None, nlu_content)
-    if intent_examples:
-        return {intent_name: intent_examples}
-    return None
+    def add_faqs(self, intent_name: str, examples: List[str], responses: List[Dict]) -> bool:
+        faq_intent = FAQS + intent_name
+        self.add_intent(faq_intent, examples)
+        self.add_new_response(faq_intent, responses)
+        return True
 
-
-def add_new_response(self, intent_name: str, responses: List[Dict]) -> bool:
-    response = read_yaml_file_content(DOMAIN)
-    response['responses'].update({"utter_" + intent_name: responses})
-    write_yaml_content_to_file(DOMAIN, response)
-    return True
-
-
-def get_responses_to_intent(self, intent_name: str) -> List[Dict]:
-    content = read_yaml_file_content(DOMAIN)
-    responses = content['responses']
-    return responses.get('utter_' + intent_name)
-
-
-def get_all_responses(self) -> list:
-    content = read_yaml_file_content(DOMAIN)
-    responses = content['responses']
-    return responses
-
-
-def add_faqs(self, intent_name: str, examples: List[str], responses: List[Dict]) -> bool:
-    faq_intent = FAQS + intent_name
-    self.add_intent(faq_intent, examples)
-    self.add_new_response(faq_intent, responses)
-    return True
-
-
-def train_model(self, model_name: str):
-    model_name = f"{MODELS}{model_name}"
-    train(DOMAIN, CONFIG, DATA, output=model_name)
-    return self.get_model(model_name)
+    def train_model(self, model_name: str):
+        model_name = f"{MODELS}{model_name}"
+        train(DOMAIN, CONFIG, DATA, output=model_name)
+        return self.get_model(model_name)
 
 
 handler = Handler()
